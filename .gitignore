@@ -1,0 +1,12 @@
+# txt files
+
+# csv files
+
+# VS Code settings (not need yet)
+.vscode/
+
+# .env (DO NOT SHARE!)
+.env
+
+# MacOS system files (for ur benifit)
+.DS_Store
