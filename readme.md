@@ -111,11 +111,14 @@ Each script (except v1) tracks:
 ---
 
 ## 🤖 Model Comparison Summary
+![GPT Cost vs Quality](gptcost.png)
 
-| Version | Model         | Max Tokens | Cost / 1K Tokens (Prompt / Completion) |
-|---------|---------------|------------|----------------------------------------|
-| v1/v3   | gpt-3.5-turbo | 150 / 1000 | $0.0015 / $0.002                       |
-| v2      | gpt-4-turbo   | 600        | $0.01 / $0.03                          |
+This chart summarizes the tradeoff between **cost per prompt** and **average response quality**:
+
+| Model         | Avg. Cost per Prompt | Avg. Quality Score (out of 20) |
+|---------------|----------------------|--------------------------------|
+| GPT-4 Turbo   | $0.0184              | 18.0                           |
+| GPT-3.5 Turbo | $0.0006              | 16.0                           |
 
 - **GPT-3.5 Turbo** is cost-efficient and fast.
 - **GPT-4 Turbo** is more powerful and accurate but more expensive.
