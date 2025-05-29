@@ -1,6 +1,5 @@
-# txt files
-
-# csv files
+# results
+results/
 
 # VS Code settings (not need yet)
 .vscode/
