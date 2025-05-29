@@ -9,6 +9,20 @@ A lightweight CLI tool for running batches of prompts through OpenAI's GPT model
 
 ---
 
+## 🔐 Setup: `.env` File
+
+Before running, create a `.env` file in the project folder:
+
+```
+OPENAI_API_KEY=sk-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+```
+
+Make sure to:
+- Use your own OpenAI key
+- Never commit `.env` to public repos
+
+---
+
 ## 📂 Script Versions
 
 ### `batch_from_file.py` (v1)
@@ -58,20 +72,6 @@ promptx
 ```
 
 Avoid blank lines at the end.
-
----
-
-## 🔐 Setup: `.env` File
-
-Before running, create a `.env` file in the project folder:
-
-```
-OPENAI_API_KEY=sk-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-```
-
-Make sure to:
-- Use your own OpenAI key
-- Never commit `.env` to public repos
 
 ---
 
