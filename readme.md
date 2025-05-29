@@ -111,7 +111,9 @@ Each script (except v1) tracks:
 ---
 
 ## 🤖 Model Comparison Summary
-![GPT Cost vs Quality](images/gptcost.png)
+<p align="center">
+  <img src="image/gptcost.png" alt="GPT Cost vs Quality Chart" width="500"/>
+</p>
 
 This chart summarizes the tradeoff between **cost per prompt** and **average response quality**:
 
