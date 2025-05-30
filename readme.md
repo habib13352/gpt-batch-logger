@@ -23,7 +23,8 @@ Make sure to:
 
 ---
 
-## 📂 Script Versions
+<details>
+<summary>📂 Script Versions</summary>
 
 ### `batch_from_file.py` (v1)
 - **Model**: GPT-3.5 Turbo
@@ -54,9 +55,12 @@ Make sure to:
 - **Detects and logs truncation**
 - **Clean terminal summaries**
 
+</details>
+
 ---
 
-## 📜 `prompts.txt` Format
+<details>
+<summary>📜 prompts.txt Format</summary>
 
 Create a file named `prompts.txt` with **one prompt per line**. For example:
 
@@ -66,16 +70,17 @@ prompt2
 prompt3
 prompt4
 ...
-...
-...
 promptx
 ```
 
 Avoid blank lines at the end.
 
+</details>
+
 ---
 
-## ▶️ How to Run
+<details>
+<summary>▶️ How to Run</summary>
 
 1. **Install dependencies:**
    ```bash
@@ -97,9 +102,12 @@ Avoid blank lines at the end.
    - Text files: `response_1.txt`, `response_2.txt`, ...
    - CSV logs: `summary_log.csv` or `summary_log_v3.csv`
 
+</details>
+
 ---
 
-## 🧾 Output Breakdown
+<details>
+<summary>🧾 Output Breakdown</summary>
 
 Each script (except v1) tracks:
 - Prompt and response tokens
@@ -108,9 +116,13 @@ Each script (except v1) tracks:
 - First 250 characters of response in CSV
 - Full response saved in `.txt` files with usage details
 
+</details>
+
 ---
 
-## 🤖 Model Comparison Summary
+<details>
+<summary>🤖 Model Comparison Summary</summary>
+
 <p align="center">
   <img src="images/gptcost.png" alt="GPT Cost vs Quality Chart" width="500"/>
 </p>
@@ -124,6 +136,8 @@ This chart summarizes the tradeoff between **cost per prompt** and **average res
 
 - **GPT-3.5 Turbo** is cost-efficient and fast.
 - **GPT-4 Turbo** is more powerful and accurate but more expensive.
+
+</details>
 
 ---
 
