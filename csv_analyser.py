@@ -2,7 +2,7 @@
 """
 csv_analyzer.py
 
-Reads 'summary_log_v3.csv' produced by your batch_from_file_v3.py script
+Reads 'results/summary_log_v3.csv' produced by your batch_from_file_v3.py script
 and prints a summary report of:
   - total number of prompts processed
   - total & average prompt/completion/overall tokens
@@ -10,15 +10,22 @@ and prints a summary report of:
   - cost-per-token, cost-per-1000-tokens, cost-per-100-prompts
   - number of truncated responses (and their Prompt #s)
 
+Additionally, saves the exact same report text to a .txt file at:
+    results/summary_report.txt
+
 Usage:
     python csv_analyzer.py
 """
 
 import csv
 import sys
+import os
 
-# Name of the CSV file to analyze (assumes it's in the same directory)
+# Input CSV location (relative to where you run this script)
 CSV_FILENAME = "results/summary_log_v3.csv"
+
+# Output TXT report location (relative to where you run this script)
+OUTPUT_FILENAME = "results/summary_report.txt"
 
 
 def parse_cost(cost_str):
@@ -33,6 +40,11 @@ def parse_cost(cost_str):
 
 
 def main():
+    # Ensure the 'results/' folder exists if we're about to write there
+    output_dir = os.path.dirname(OUTPUT_FILENAME)
+    if output_dir and not os.path.isdir(output_dir):
+        os.makedirs(output_dir)
+
     try:
         with open(CSV_FILENAME, newline="", encoding="utf-8") as f:
             reader = csv.DictReader(f)
@@ -135,45 +147,58 @@ def main():
             cost_per_1000_tokens = cost_per_token * 1000
             cost_per_100_prompts = avg_cost * 100
 
-            # Print the summary report
-            print("=" * 60)
-            print("CSV Analysis Report")
-            print(f"Source file: {CSV_FILENAME}")
-            print("=" * 60)
-            print(f"Total prompts processed: {total_prompts}")
-            print()
-            print("→ Token usage (per-prompt stats):")
-            print(f"   • Total prompt tokens      : {sum_prompt_tokens}")
-            print(f"   • Total completion tokens  : {sum_completion_tokens}")
-            print(f"   • Total tokens             : {sum_total_tokens}")
-            print()
-            print(f"   • Min prompt tokens        : {min_prompt_tokens}")
-            print(f"   • Max prompt tokens        : {max_prompt_tokens}")
-            print(f"   • Avg prompt tokens        : {avg_prompt_tokens:.2f}")
-            print()
-            print(f"   • Min completion tokens    : {min_completion_tokens}")
-            print(f"   • Max completion tokens    : {max_completion_tokens}")
-            print(f"   • Avg completion tokens    : {avg_completion_tokens:.2f}")
-            print()
-            print(f"   • Avg total tokens         : {avg_total_tokens:.2f}")
-            print()
-            print("→ Cost (USD):")
-            print(f"   • Total estimated cost      : ${sum_cost:.4f}")
-            print(f"   • Min single-prompt cost    : ${min_cost:.4f}")
-            print(f"   • Max single-prompt cost    : ${max_cost:.4f}")
-            print(f"   • Avg cost per prompt       : ${avg_cost:.4f}")
-            print()
-            print("→ Additional Cost Metrics:")
-            print(f"   • Cost per token            : ${cost_per_token:.6f}")
-            print(f"   • Cost per 1 000 tokens     : ${cost_per_1000_tokens:.4f}")
-            print(f"   • Cost per 100 prompts      : ${cost_per_100_prompts:.4f}")
-            print()
-            print("→ Truncation:")
-            print(f"   • Number of truncated responses: {truncated_count}")
+            # Build the report lines in a list
+            report_lines = []
+            report_lines.append("=" * 60)
+            report_lines.append("CSV Analysis Report")
+            report_lines.append(f"Source file: {CSV_FILENAME}")
+            report_lines.append("=" * 60)
+            report_lines.append(f"Total prompts processed: {total_prompts}")
+            report_lines.append("")
+            report_lines.append("→ Token usage (per-prompt stats):")
+            report_lines.append(f"   • Total prompt tokens      : {sum_prompt_tokens}")
+            report_lines.append(f"   • Total completion tokens  : {sum_completion_tokens}")
+            report_lines.append(f"   • Total tokens             : {sum_total_tokens}")
+            report_lines.append("")
+            report_lines.append(f"   • Min prompt tokens        : {min_prompt_tokens}")
+            report_lines.append(f"   • Max prompt tokens        : {max_prompt_tokens}")
+            report_lines.append(f"   • Avg prompt tokens        : {avg_prompt_tokens:.2f}")
+            report_lines.append("")
+            report_lines.append(f"   • Min completion tokens    : {min_completion_tokens}")
+            report_lines.append(f"   • Max completion tokens    : {max_completion_tokens}")
+            report_lines.append(f"   • Avg completion tokens    : {avg_completion_tokens:.2f}")
+            report_lines.append("")
+            report_lines.append(f"   • Avg total tokens         : {avg_total_tokens:.2f}")
+            report_lines.append("")
+            report_lines.append("→ Cost (USD):")
+            report_lines.append(f"   • Total estimated cost      : ${sum_cost:.4f}")
+            report_lines.append(f"   • Min single-prompt cost    : ${min_cost:.4f}")
+            report_lines.append(f"   • Max single-prompt cost    : ${max_cost:.4f}")
+            report_lines.append(f"   • Avg cost per prompt       : ${avg_cost:.4f}")
+            report_lines.append("")
+            report_lines.append("→ Additional Cost Metrics:")
+            report_lines.append(f"   • Cost per token            : ${cost_per_token:.6f}")
+            report_lines.append(f"   • Cost per 1 000 tokens     : ${cost_per_1000_tokens:.4f}")
+            report_lines.append(f"   • Cost per 100 prompts      : ${cost_per_100_prompts:.4f}")
+            report_lines.append("")
+            report_lines.append("→ Truncation:")
+            report_lines.append(f"   • Number of truncated responses: {truncated_count}")
             if truncated_count > 0:
                 truncated_list_str = ", ".join(map(str, truncated_list))
-                print(f"   • Truncated Prompt #s           : {truncated_list_str}")
-            print("=" * 60)
+                report_lines.append(f"   • Truncated Prompt #s           : {truncated_list_str}")
+            report_lines.append("=" * 60)
+
+            # Join lines into one big string
+            report_text = "\n".join(report_lines)
+
+            # 1) Print to console
+            print(report_text)
+
+            # 2) Write to OUTPUT_FILENAME
+            with open(OUTPUT_FILENAME, "w", encoding="utf-8") as out_f:
+                out_f.write(report_text)
+
+            print(f"\nReport also saved to: {OUTPUT_FILENAME}")
 
     except FileNotFoundError:
         print(f"ERROR: '{CSV_FILENAME}' not found in the current directory.")
