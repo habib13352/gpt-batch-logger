@@ -1,5 +1,7 @@
 # .env (DO NOT SHARE!)
 .env
+*.env
+.env.*
 
 # Results
 results/
