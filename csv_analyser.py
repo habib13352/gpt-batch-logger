@@ -18,7 +18,7 @@ import csv
 import sys
 
 # Name of the CSV file to analyze (assumes it's in the same directory)
-CSV_FILENAME = "summary_log_v3.csv"
+CSV_FILENAME = "results/summary_log_v3.csv"
 
 
 def parse_cost(cost_str):
@@ -39,10 +39,10 @@ def main():
             # Make sure expected columns exist
             expected_cols = {
                 "Prompt #",
-                "Prompt Tokens",
-                "Completion Tokens",
-                "Total Tokens",
-                "Estimated Cost (USD)",
+                "prompt_tokens",
+                "completion_tokens",
+                "total_tokens",
+                "cost",
                 "Truncated?"
             }
             missing = expected_cols - set(reader.fieldnames)
@@ -70,20 +70,20 @@ def main():
 
                 # Parse token counts
                 try:
-                    pt = int(row["Prompt Tokens"])
+                    pt = int(row["prompt_tokens"])
                 except ValueError:
                     pt = 0
                 try:
-                    ct = int(row["Completion Tokens"])
+                    ct = int(row["completion_tokens"])
                 except ValueError:
                     ct = 0
                 try:
-                    tt = int(row["Total Tokens"])
+                    tt = int(row["total_tokens"])
                 except ValueError:
                     tt = pt + ct
 
                 # Parse cost
-                cost = parse_cost(row["Estimated Cost (USD)"])
+                cost = parse_cost(row["cost"])
 
                 # Parse truncated flag
                 is_truncated = row["Truncated?"].strip().lower() in ("yes", "true", "1")
