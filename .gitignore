@@ -12,5 +12,8 @@ results.zip
 batch_report.html
 batch_report_v2.html
 
+# ignore any file whose name begins with "batch_report"
+batch_report*
+
 # MacOS system files (for ur benifit)
 .DS_Store
