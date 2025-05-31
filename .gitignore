@@ -1,11 +1,16 @@
-# results
+# .env (DO NOT SHARE!)
+.env
+
+# Results
 results/
 results.zip
+
 # VS Code settings (not need yet)
 .vscode/
 
-# .env (DO NOT SHARE!)
-.env
+# Reports
+batch_report.html
+batch_report_v2.html
 
 # MacOS system files (for ur benifit)
 .DS_Store
