@@ -1,3 +1,5 @@
+#edit this to work with generated csv WITHOUT editing csv or py
+
 """
 report_builder_v2.py
 
