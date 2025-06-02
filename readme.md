@@ -273,7 +273,7 @@ This chart summarizes the tradeoff between **cost per prompt** and **average res
 ## 🛠️ Tip for Beginners
 
 Clone the repo and use `batch_from_file.py` first to get started.
-Then explore `v2` and `v3` for more advanced logging and flexibility.
+Then explore `v2` and `v3` for more advanced logging and flexibility. Use a cheaper model when testing and don't forget to limit the tokens of the responses. NEVER share this API key or commit your .env file publically.
 
 ---
 
