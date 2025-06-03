@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#edit this to work with generated csv WITHOUT editing csv or py
 """
 csv_analyzer.py
 
