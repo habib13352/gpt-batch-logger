@@ -1,5 +1,7 @@
+#edit this to make sure results are saved in results folder
+
 from openai import OpenAI
-import os
+import os #?
 import time
 import csv
 from dotenv import load_dotenv
