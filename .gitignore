@@ -13,6 +13,7 @@ results.zip
 # Reports
 batch_report.html
 batch_report_v2.html
+reports/
 
 # ignore any file whose name begins with "batch_report"
 batch_report*
