@@ -1,3 +1,6 @@
+#edit this to make sure results are saved in results folder
+
+
 # === Import required libraries ===
 from openai import OpenAI        # New v1.x OpenAI client
 import os                        # To access environment variables
