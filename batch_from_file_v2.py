@@ -11,8 +11,8 @@ load_dotenv()
 client = OpenAI()
 
 # === Model and cost settings ===
-MODEL = "gpt-4-turbo"
-MAX_TOKENS = 600
+MODEL = "gpt-4-turbo" # gpt-3.5-turbo will be MUCH cheaper.
+MAX_TOKENS = 600 # gpt-4-turbo can EASILY fill 600 tokens still be truncated.
 COST_PER_1K_PROMPT = 0.01
 COST_PER_1K_COMPLETION = 0.03
 
@@ -21,6 +21,7 @@ with open("prompts.txt", "r", encoding="utf-8") as f:
     prompts = [line.strip() for line in f if line.strip()]
 
 # === Prepare CSV log file ===
+# these names need to match the helper scripts
 csv_filename = "summary_log.csv"
 with open(csv_filename, mode="w", newline="", encoding="utf-8") as csv_file:
     csv_writer = csv.writer(csv_file)
