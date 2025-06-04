@@ -1,4 +1,6 @@
-#edit this to work with generated csv WITHOUT editing csv or py
+# edit this to work with generated csv WITHOUT editing csv or py
+
+# this ones a mess with the naming of the cols. fix it later.
 
 """
 report_builder_v2.py
