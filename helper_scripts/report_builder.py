@@ -1,4 +1,5 @@
-#edit this to work with generated csv WITHOUT editing csv or py
+# edit this to work with generated csv WITHOUT editing csv or py
+# this ones a mess. fix it and then fix v2.
 
 """
 report_builder.py (simplified)
