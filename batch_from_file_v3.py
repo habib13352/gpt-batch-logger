@@ -23,6 +23,7 @@ with open("prompts.txt", "r", encoding="utf-8") as f:
     prompts = [line.strip() for line in f if line.strip()]
 
 # === Prepare CSV log file ===
+# these names need to match the helper scripts
 csv_filename = "summary_log_v3.csv"
 with open(csv_filename, mode="w", newline="", encoding="utf-8") as csv_file:
     csv_writer = csv.writer(csv_file)
